@@ -20,3 +20,7 @@ File or Folder | Purpose
 ## Learn More
 
 Learn more at <https://cap.cloud.sap>.
+
+## To test branch datamodel 
+- Run cds build 
+- Run cds deploy --to sqlite:myte.db
