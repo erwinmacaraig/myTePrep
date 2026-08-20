@@ -27,3 +27,17 @@ Content-Type: application/json
     "EMAIL_ADDRESS": "sap-user@test.com",
     "PHONE_NUMBER": "12345679"
 }
+
+###
+POST http://localhost:4004/odata/v4/CatalogService/worker HTTP/1.1 
+Content-Type: application/json 
+
+{    
+      "firstName": "Erwin",
+      "lastName": "Mcraig",
+      "Gender": "M",
+      "phoneNumber": "+91-9652143258",
+      "email": "erwin_pogi@yahoo.com",
+      "currency_code": "USD",
+      "salaryAmount": 34346
+}

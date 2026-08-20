@@ -1,27 +1,36 @@
 namespace myte.db;
 
+using {cuid, managed, Currency } from '@sap/cds/common';
+using {myte.customAspect} from './customAspect';
 context master {
 
-    entity worker {
-        key ID                     : UUID;
+    entity worker : cuid, managed {        
         firstName                   : String(40);
         lastName                    : String(40);
-        Gender                      : String(10);
-        phoneNumber                 : String(10);
-        email                       : String(30);
+        Gender                      : customAspect.Gender;
+        phoneNumber                 : customAspect.phoneNumber;
+        email                       : customAspect.Email;
         currency_code               : String(3);
         salaryAmount                : Decimal(15,2);
     }
-    entity businesspartner {
-        key NODE_KEY                : String(50);
-        BP_ROLE                     : Integer;
-        EMAIL_ADDRESS               : String(50);
-        PHONE_NUMBER                : String(50);
-        FAX_NUMBER                  : String(50);
-        WEB_ADDRESS                 : String(100);
+    entity businesspartner: managed {
+        key NODE_KEY                : String(50)
+         @title : '{i18n>bp_key}';
+        BP_ROLE                     : Integer
+        @title: '{i18n>bp_role}';
+        EMAIL_ADDRESS               : String(50)
+        @title : '{i18n>email_address}';
+        PHONE_NUMBER                : String(50)
+        @title : '{i18n>phone_number}';
+        FAX_NUMBER                  : String(50)
+        @title : '{i18n>fax_number}';
+        WEB_ADDRESS                 : String(100)
+        @title : '{i18n>web_address}';
         ADDRESS_GUID                : Association to one address;
-        BP_ID                       : Integer;
-        COMPANY_NAME                : String(30);
+        BP_ID                       : Integer
+        @title : '{i18n>bp_id}';
+        COMPANY_NAME                : String(30)
+        @title : '{i18n>company_name}';
     }
 
     entity product {
@@ -71,7 +80,7 @@ context master {
 } 
 
 context transaction {
-    entity purchaseorder {
+    entity purchaseorder: customAspect.Amount {
         key NODE_KEY                : String(50);
         PO_ID                       : String(24);
         PARTNER_GUID                : Association to one master.businesspartner;
@@ -79,7 +88,7 @@ context transaction {
         Items                       : Association to many poitems on Items.PARENT_KEY = $self;
     }
 
-    entity poitems {
+    entity poitems: customAspect.Amount {
         key NODE_KEY                : String(50);
         PARENT_KEY                  : Association to one purchaseorder;
         PO_ITEM_POS                 : Integer;
