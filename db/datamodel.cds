@@ -1,6 +1,17 @@
 namespace myte.db;
 
 context master {
+
+    entity worker {
+        key ID                     : UUID;
+        firstName                   : String(40);
+        lastName                    : String(40);
+        Gender                      : String(10);
+        phoneNumber                 : String(10);
+        email                       : String(30);
+        currency_code               : String(3);
+        salaryAmount                : Decimal(15,2);
+    }
     entity businesspartner {
         key NODE_KEY                : String(50);
         BP_ROLE                     : Integer;
@@ -18,7 +29,7 @@ context master {
         PRODUCT_ID                  : String(25);
         TYPE_CODE                   : String(2);
         CATEGORY                    : String(32);
-        DESCRIPTION                 : localized String(255);
+        DESCRIPTION                 : localized String(255);   // when in front of any field, this will create an extra table automatically
         SUPPLIER_GUID               : Association to one businesspartner;
         TAX_TARIF_CODE              : Integer;
         MEASURE_UNIT                : String(2);
@@ -45,6 +56,7 @@ context master {
         LATITUDE                    : Decimal;
         LONGITUDE                   : Decimal;
         businesspartner             : Association to one businesspartner on businesspartner.ADDRESS_GUID = $self;
+                                      // $self is used when you want to compare primary key of this table (address) with another 
     }
 
     // entity employee {
