@@ -112,3 +112,14 @@ Content-Type: application/json
 ###
 DELETE http://localhost:4004/odata/v4/new-cql/deleteWorker/fc39001f-682b-478a-9554-bfc09714879f HTTP/1.1
 
+###
+
+GET http://localhost:4004/odata/v4/high-sal/getHighestSalary()
+
+###
+POST http://localhost:4004/odata/v4/increment/hike HTTP/1.1
+Content-Type: application/json
+
+{
+"ID":"721375c4-e3e0-4394-83f8-bc1e3e5927ec"
+}

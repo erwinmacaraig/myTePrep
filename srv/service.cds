@@ -19,3 +19,17 @@ service CatalogService @(path: 'CatalogService'){
     @readonly
     entity worker as projection on master.worker;
 }
+
+//Action implementation
+@impl: './incrementLogic.js'
+service increment {
+    entity Worker as projection on master.worker; 
+    action hike(ID:UUID);
+}
+
+// Function implementation
+@impl: './highSal.js'
+service highSal {
+    entity Worker as projection on master.worker;
+    function getHighestSalary() returns Decimal(15,2)
+}
