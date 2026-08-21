@@ -87,3 +87,28 @@ Content-Type: application/json
 "salaryAmount": 68632853
 }
 
+
+###
+POST http://localhost:4004/odata/v4/new-cql/insertWorker HTTP/1.1
+Content-Type: application/json
+
+{
+"firstName": "Erwin",
+"lastName": "Pogi",
+"Gender": "M",
+"currency_code": "USD",
+"salaryAmount": 585858
+}
+
+###
+PATCH  http://localhost:4004/odata/v4/new-cql/updateWorker/721375c4-e3e0-4394-83f8-bc1e3e5927ec HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Khareem Abdhul",
+    "lastName": "Jabare" 
+}
+
+###
+DELETE http://localhost:4004/odata/v4/new-cql/deleteWorker/fc39001f-682b-478a-9554-bfc09714879f HTTP/1.1
+
